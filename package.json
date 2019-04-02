@@ -6,6 +6,11 @@
   "directories": {
     "test": "test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dezzles/story-generator.git"
+  },
+  "homepage": "https://github.com/dezzles/story-generator#readme",
   "scripts": {
     "test": "cucumber-js --require-module @babel/register",
     "prepublish": "babel ./story-builder.mjs --out-file story-builder.js"
