@@ -21,3 +21,4 @@ Feature: Using the Story Builder
       | {{ recurseList }}      | 1            | answer2               |
       | {{ recurseList }}      | 2            | answer3               |
       | {{* test }}            | 0            | potatoes              |
+      | {{^ test }}            | 1            | Potato                |

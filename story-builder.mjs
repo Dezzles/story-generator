@@ -6,7 +6,8 @@ export default class StoryBuilder {
     this.data = []
     this.baseData = []
     this.processors = {
-      '*': u => nlp(u).nouns().toPlural().all().out()
+      '*': u => nlp(u).nouns().toPlural().all().out(),
+      '^': u => u[0].toUpperCase() + u.substr(1).toLowerCase()
     }
   }
 
