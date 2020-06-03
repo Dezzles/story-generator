@@ -67,7 +67,7 @@ describe('Compiler', function () {
     })
   })
 
-  describe('build', function() {
+  describe('build', function () {
     it('correctly calcs result', function () {
       const compiler = new Compiler()
       compiler.loadDataset({
