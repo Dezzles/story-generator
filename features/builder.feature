@@ -12,7 +12,6 @@ Feature: Using the Story Builder
       | {{ test }}             | 0            | potato                |
       | test                   | 0            | test                  |
       | a {{ test }} b         | 0            | a potato b            |
-      | a {{ missing }} b      | 0            | a $MISSING:missing$ b |
       | a {{ recurseTest }} b  | 0            | a potato b            |
       | a {{ recurseTest2 }} b | 0            | a potato potato b     |
       | {{ list }}             | 0            | a1                    |
@@ -22,3 +21,4 @@ Feature: Using the Story Builder
       | {{ recurseList }}      | 2            | answer3               |
       | {{* test }}            | 0            | potatoes              |
       | {{^ test }}            | 1            | Potato                |
+      | {{! test }}            | 1            | POTATO                |

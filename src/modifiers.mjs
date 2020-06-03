@@ -1,0 +1,6 @@
+export default {
+  PLURAL: 'PLURAL',
+  CAPITALISE: 'CAPITALISE',
+  LOWERCASE: 'LOWERCASE',
+  ALL_CAPS: 'ALL_CAPS'
+}
