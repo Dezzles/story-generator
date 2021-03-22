@@ -1,5 +1,5 @@
 import { Given, When, Then } from 'cucumber'
-import Compiler from '../../src/Compiler'
+import Compiler from '../../src/compiler'
 import { expect } from 'chai'
 import TestData from './testSet'
 
