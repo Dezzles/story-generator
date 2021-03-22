@@ -41,9 +41,33 @@ describe('Compiler', function () {
           { token: Token.END }
         ])
     })
+    it('tokenises correctly without space', function () {
+      const compiler = new Compiler()
+      const result = compiler.tokenise('{{firstName}}{{lastName}}')
+      expect(result)
+        .to.deep.include.ordered.members([
+          { token: Token.START },
+          { token: Token.START_REF, pos: 0 },
+          { token: Token.IDENTIFIER, identifier: 'firstName', pos: 2 },
+          { token: Token.END_REF, pos: 11 },
+          { token: Token.START_REF, pos: 13 },
+          { token: Token.IDENTIFIER, identifier: 'lastName', pos: 15 },
+          { token: Token.END_REF, pos: 23 },
+          { token: Token.END }
+        ])
+    })
+    it('tokenises empty string', function () {
+      const compiler = new Compiler()
+      const result = compiler.tokenise('')
+      expect(result)
+        .to.deep.include.ordered.members([
+          { token: Token.START },
+          { token: Token.END }
+        ])
+    })
   })
   describe('compile', function () {
-    it('tokenises correctly', function () {
+    it('compiles correctly', function () {
       const compiler = new Compiler()
       const tokens = compiler.tokenise('start {} mid {{ * _ someRef : savedRef }} end')
       const result = compiler.compile('testSet', tokens, [ 'someRef' ])
@@ -52,6 +76,14 @@ describe('Compiler', function () {
           { text: 'start {} mid ' },
           { dataset: 'someRef', modifiers: [ Modifier.PLURAL, Modifier.LOWERCASE ], variable: 'savedRef' },
           { text: ' end' }
+        ])
+    })
+    it('compiles empty string correctly', function () {
+      const compiler = new Compiler()
+      const tokens = compiler.tokenise('')
+      const result = compiler.compile('testSet', tokens, [ 'someRef' ])
+      expect(result)
+        .to.deep.include.ordered.members([
         ])
     })
   })
@@ -63,6 +95,15 @@ describe('Compiler', function () {
         lastName: [ 'Jackson', 'Carter', 'O\'Neill', 'Weir' ],
         job: [ 'Archaeologist', 'Scientist', 'Soldier', 'Negotiator' ],
         fullName: '{{ firstName }} {{ lastName }}'
+      })
+    })
+    it('loads data that contains no space', function () {
+      const compiler = new Compiler()
+      compiler.loadDataset({
+        firstName: [ 'Daniel', 'Sam', 'Jack', 'Elizabeth' ],
+        lastName: [ 'Jackson', 'Carter', 'O\'Neill', 'Weir' ],
+        job: [ 'Archaeologist', 'Scientist', 'Soldier', 'Negotiator' ],
+        nameNoSpace: '{{firstName}}{{ lastName}}'
       })
     })
   })

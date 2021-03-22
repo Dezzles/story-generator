@@ -1,4 +1,4 @@
-import Token from './Tokens'
+import Token from './tokens'
 
 export default {
   START: [

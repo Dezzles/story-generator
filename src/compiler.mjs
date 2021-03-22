@@ -1,5 +1,5 @@
-import Token from './Tokens'
-import Modifier from './Modifiers'
+import Token from './tokens'
+import Modifier from './modifiers'
 import TextBuilder from './TextBuilder'
 import ReferenceBuilder from './ReferenceBuilder'
 import OptionBuilder from './OptionBuilder'
@@ -128,6 +128,8 @@ export default class Compiler {
         textParser(node.next)
       } else if (node.next.token === Token.START_REF) {
         startRefParser(node.next)
+      } else if (node.next.token === Token.END) {
+        endParser(node.next)
       } else {
         unknownParser(dataset, node.text, 'Expected text, or {{')
       }
@@ -159,7 +161,7 @@ export default class Compiler {
     endRefParser = node => {
       builders.push(new ReferenceBuilder(reference))
       if (node.next.token === Token.START_REF) {
-        referenceParser(node.next)
+        startRefParser(node.next)
       } else if (node.next.token === Token.TEXT) {
         textParser(node.next)
       } else if (node.next.token === Token.END) {

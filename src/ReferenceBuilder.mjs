@@ -1,4 +1,4 @@
-import Modifier from './Modifiers'
+import Modifier from './modifiers'
 import nlp from 'compromise'
 export default class ReferenceBuilder {
   constructor (data) {
