@@ -1,7 +1,7 @@
-import Compiler from '../src/Compiler'
+import Compiler from '../src/compiler'
 import { expect } from 'chai'
-import Token from '../src/Tokens'
-import Modifier from '../src/Modifiers'
+import Token from '../src/tokens'
+import Modifier from '../src/modifiers'
 
 describe('Compiler', function () {
   describe('tokenise', function () {
